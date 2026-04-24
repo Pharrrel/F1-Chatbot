@@ -44,7 +44,7 @@ def search_knowledge(user_message):
     user_words = user_message.lower().split()
     matches = []
 
-    for item in f1_knowledge:
+    def search_item(item):
         text = json.dumps(item).lower()
         score = 0
 
@@ -55,12 +55,16 @@ def search_knowledge(user_message):
         if score > 0:
             matches.append((score, item))
 
+    if isinstance(f1_knowledge, dict):
+        for key, value in f1_knowledge.items():
+            search_item({key: value})
+    elif isinstance(f1_knowledge, list):
+        for item in f1_knowledge:
+            search_item(item)
+
     matches.sort(reverse=True, key=lambda x: x[0])
 
-    top_matches = [item for score, item in matches[:5]]
-
-    return top_matches
-
+    return [item for score, item in matches[:5]]
                 
 
 #a GET request sent to the browser which when run returns the function home()
@@ -78,13 +82,12 @@ def chat(request: ChatRequest):
     relevant_knowledge = search_knowledge(user_message)
 
     response = client.chat.completions.create(
-        model="llama-3.1-8b-instant",
+        model="llama-3.3-70b-versatile",
         messages=[
             {
                 "role": "system",
                 "content": (
                     "You are a helpful Formula 1 chatbot. "
-                    "Always prioritize the provided F1 knowledge when answering. "
                     "If the answer exists in the provided knowledge, use it directly. "
                     "Do NOT mention knowledge cutoffs. "
                     "Keep track of the conversation context. "
