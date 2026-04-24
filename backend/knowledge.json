@@ -1,21 +1,395 @@
 {
-    "hamilton": {
-        "aliases": ["hamilton", "lewis", "lewis hamilton", "goat"],
-        "answer": "Lewis Hamilton is one of the most successful drivers in Formula 1 history."},
+  "metadata": {
+    "name": "F1 Chatbot Knowledge Base",
+    "version": "1.0",
+    "last_updated": "2026-04-24",
+    "purpose": "Beginner-friendly Formula 1 chatbot knowledge base",
+    "note": "This is broad F1 knowledge, not literally every F1 fact. Update season-specific facts regularly."
+  },
+  "identity": {
+    "sport": "Formula 1",
+    "also_known_as": [
+      "F1",
+      "Formula One"
+    ],
+    "description": "Formula 1 is the highest class of international single-seater circuit racing, governed by the FIA.",
+    "governing_body": "FIA",
+    "commercial_rights_holder": "Formula One Group",
+    "basic_goal": "Drivers and teams compete across Grands Prix to score points and win the Drivers' and Constructors' Championships."
+  },
+  "quick_answers": {
+    "what is f1": "Formula 1 is the top level of single-seater motor racing. Drivers race highly advanced cars around circuits and street tracks around the world.",
+    "what is a grand prix": "A Grand Prix is a Formula 1 race weekend. It usually includes practice, qualifying, and the race.",
+    "what is qualifying": "Qualifying decides the starting order for the race. The fastest driver usually starts on pole position.",
+    "what is pole position": "Pole position is first place on the starting grid, earned by setting the fastest qualifying lap.",
+    "what is drs": "DRS means Drag Reduction System. It opens a flap on the rear wing to reduce drag and help a driver overtake on certain straights.",
+    "what is a pit stop": "A pit stop is when a driver enters the pit lane so the team can change tyres or fix damage.",
+    "what is a safety car": "A safety car slows the race when there is danger on track, such as a crash or debris.",
+    "what is a virtual safety car": "A Virtual Safety Car slows all drivers to a controlled speed without putting a physical safety car on track.",
+    "what are slick tyres": "Slick tyres are dry-weather tyres with no tread. They give maximum grip on a dry track.",
+    "what are intermediates": "Intermediate tyres are used for damp or lightly wet conditions.",
+    "what are full wets": "Full wet tyres are used in heavy rain and standing water.",
+    "what is dirty air": "Dirty air is turbulent air from the car ahead. It reduces downforce and makes the following car harder to drive.",
+    "what is slipstream": "Slipstream is reduced air resistance behind another car, helping the following car gain speed on straights.",
+    "what is undercut": "An undercut is when a driver pits earlier than a rival to use fresher tyres and gain time.",
+    "what is overcut": "An overcut is when a driver stays out longer than a rival, hoping to gain time before pitting.",
+    "what is parc ferme": "Parc fermé is the period after qualifying when teams are restricted from changing major car settings.",
+    "what is a sprint": "A Sprint is a shorter race held on selected weekends. It gives points and adds extra competitive running before the Grand Prix.",
+    "what is a constructor": "A constructor is the team that designs and races the car, such as Ferrari, Mercedes, McLaren, or Red Bull.",
+    "what is the constructors championship": "The Constructors' Championship is the title for the team with the most points across both drivers.",
+    "what is the drivers championship": "The Drivers' Championship is the title for the driver with the most points across the season."
+  },
+  "championships": {
+    "drivers_championship": {
+      "description": "The Drivers' Championship is awarded to the driver who scores the most points during the season.",
+      "recent_champions": {
+        "2021": "Max Verstappen",
+        "2022": "Max Verstappen",
+        "2023": "Max Verstappen",
+        "2024": "Max Verstappen",
+        "2025": "Lando Norris"
+      }
+    },
+    "constructors_championship": {
+      "description": "The Constructors' Championship is awarded to the team whose two drivers score the most combined points.",
+      "recent_champions": {
+        "2021": "Mercedes",
+        "2022": "Red Bull Racing",
+        "2023": "Red Bull Racing",
+        "2024": "McLaren",
+        "2025": "McLaren"
+      }
+    }
+  },
+  "points_system": {
+    "grand_prix_points": {
+      "1st": 25,
+      "2nd": 18,
+      "3rd": 15,
+      "4th": 12,
+      "5th": 10,
+      "6th": 8,
+      "7th": 6,
+      "8th": 4,
+      "9th": 2,
+      "10th": 1
+    },
+    "note": "From 2025, the extra point for fastest lap was removed."
+  },
+  "weekend_format": {
+    "standard_weekend": [
+      "Practice sessions help teams learn tyre behaviour and setup.",
+      "Qualifying sets the starting grid.",
+      "The Grand Prix is the main race where full points are awarded."
+    ],
+    "sprint_weekend": [
+      "Sprint weekends include a shorter Sprint race.",
+      "Sprint points are awarded to the top finishers.",
+      "The Sprint does not replace the main Grand Prix."
+    ]
+  },
+  "flags": {
+    "green": "Track is clear; racing conditions apply.",
+    "yellow": "Danger ahead; drivers must slow down and overtaking is restricted.",
+    "double_yellow": "Serious danger; drivers must slow significantly and be ready to stop.",
+    "red": "Session stopped due to danger, crash, weather, or track issue.",
+    "blue": "A slower car is being lapped and must let faster cars pass.",
+    "black": "Driver is disqualified or must return to the pits immediately.",
+    "black_and_white": "Warning for unsportsmanlike driving or track limits.",
+    "chequered": "Session or race has ended."
+  },
+  "tyres": {
+    "dry_compounds": {
+      "soft": "Fastest dry tyre, usually wears out quickest.",
+      "medium": "Balanced dry tyre with good speed and durability.",
+      "hard": "Most durable dry tyre, usually slower to warm up."
+    },
+    "wet_compounds": {
+      "intermediate": "For damp or lightly wet tracks.",
+      "full_wet": "For heavy rain and standing water."
+    },
+    "strategy": "Teams choose tyre strategies based on wear, temperature, track position, safety cars, and weather."
+  },
+  "car_parts": {
+    "front_wing": "Creates front downforce and helps control airflow.",
+    "rear_wing": "Creates rear downforce and includes the DRS flap.",
+    "floor": "A major source of downforce through ground effect.",
+    "diffuser": "Helps accelerate air under the car and create downforce.",
+    "sidepods": "Guide airflow and help cool the car.",
+    "halo": "A safety structure protecting the driver's head.",
+    "power_unit": "Hybrid engine system combining internal combustion and electrical energy recovery.",
+    "brakes": "Carbon braking system designed for extreme temperatures and high stopping power.",
+    "steering_wheel": "Controls gears, radio, engine modes, brake balance, energy deployment, and more."
+  },
+  "racing_terms": {
+    "apex": "The inside point of a corner where the driver aims the car.",
+    "brake_balance": "How braking force is split between front and rear wheels.",
+    "degradation": "Loss of tyre performance over time.",
+    "graining": "When rubber tears and sticks to the tyre surface, reducing grip.",
+    "blistering": "When tyres overheat and the rubber surface is damaged.",
+    "lock_up": "When a wheel stops rotating under braking, causing a flat spot.",
+    "flat_spot": "A damaged area on a tyre caused by locking up.",
+    "track_limits": "Rules defining the legal racing surface. Drivers can be penalized for repeatedly exceeding them.",
+    "stewards": "Officials who investigate incidents and issue penalties.",
+    "drive_through_penalty": "A penalty requiring the driver to drive through the pit lane without stopping.",
+    "time_penalty": "Extra time added to a driver's race result or served at a pit stop.",
+    "dnf": "Did Not Finish.",
+    "dns": "Did Not Start.",
+    "dsq": "Disqualified.",
+    "fastest_lap": "The quickest lap set during the race.",
+    "formation_lap": "The lap before the race start where drivers warm tyres and brakes.",
+    "out_lap": "The lap immediately after leaving the pits.",
+    "in_lap": "The lap before entering the pits.",
+    "push_lap": "A lap where the driver drives at maximum pace.",
+    "cool_down_lap": "A slower lap to cool tyres, brakes, and engine."
+  },
+  "strategy": {
+    "undercut": "Pit earlier than a rival to use fresh tyres and gain time.",
+    "overcut": "Stay out longer than a rival to gain track position or use clear air.",
+    "one_stop": "A strategy with one pit stop.",
+    "two_stop": "A strategy with two pit stops, usually faster if tyre degradation is high.",
+    "track_position": "Where a car is physically placed on track; important because overtaking can be difficult.",
+    "clean_air": "Air with little turbulence, giving the car better downforce and tyre life.",
+    "dirty_air": "Turbulent air behind another car, making the following car harder to drive.",
+    "safety_car_strategy": "Teams may pit during a safety car because less time is lost at reduced race speeds."
+  },
+  "drivers": {
+    "max verstappen": {
+      "nationality": "Dutch",
+      "known_for": "Aggressive speed, race craft, consistency, and multiple world championships.",
+      "world_titles": [
+        "2021",
+        "2022",
+        "2023",
+        "2024"
+      ],
+      "summary": "Max Verstappen is a Dutch Formula 1 driver and one of the most successful drivers of the modern era."
+    },
+    "lewis hamilton": {
+      "nationality": "British",
+      "world_titles": [
+        "2008",
+        "2014",
+        "2015",
+        "2017",
+        "2018",
+        "2019",
+        "2020"
+      ],
+      "summary": "Lewis Hamilton is a seven-time Formula 1 World Champion, known for his speed, consistency, wet-weather skill, and activism."
+    },
+    "charles leclerc": {
+      "nationality": "Monegasque",
+      "summary": "Charles Leclerc is known for his qualifying speed, Ferrari career, and strong one-lap pace."
+    },
+    "lando norris": {
+      "nationality": "British",
+      "summary": "Lando Norris is a McLaren driver known for speed, race craft, and strong performances in the modern era.",
+      "world_titles": [
+        "2025"
+      ]
+    },
+    "oscar piastri": {
+      "nationality": "Australian",
+      "summary": "Oscar Piastri is a McLaren driver known for calm race execution, technical feedback, and rapid development."
+    },
+    "george russell": {
+      "nationality": "British",
+      "summary": "George Russell is a Mercedes driver known for qualifying speed, consistency, and race intelligence."
+    },
+    "kimi antonelli": {
+      "nationality": "Italian",
+      "summary": "Kimi Antonelli is a highly rated Italian driver associated with Mercedes in the current F1 era."
+    },
+    "fernando alonso": {
+      "nationality": "Spanish",
+      "world_titles": [
+        "2005",
+        "2006"
+      ],
+      "summary": "Fernando Alonso is a two-time World Champion known for race craft, longevity, and adaptability."
+    },
+    "sebastian vettel": {
+      "nationality": "German",
+      "world_titles": [
+        "2010",
+        "2011",
+        "2012",
+        "2013"
+      ],
+      "summary": "Sebastian Vettel is a four-time World Champion best known for his Red Bull dominance and later Ferrari career."
+    },
+    "michael schumacher": {
+      "nationality": "German",
+      "world_titles": [
+        "1994",
+        "1995",
+        "2000",
+        "2001",
+        "2002",
+        "2003",
+        "2004"
+      ],
+      "summary": "Michael Schumacher is a seven-time World Champion and one of the most influential drivers in F1 history."
+    },
+    "ayrton senna": {
+      "nationality": "Brazilian",
+      "world_titles": [
+        "1988",
+        "1990",
+        "1991"
+      ],
+      "summary": "Ayrton Senna was a three-time World Champion famous for qualifying brilliance, wet-weather skill, and intensity."
+    },
+    "niki lauda": {
+      "nationality": "Austrian",
+      "world_titles": [
+        "1975",
+        "1977",
+        "1984"
+      ],
+      "summary": "Niki Lauda was a three-time World Champion known for bravery, intelligence, and his comeback after a serious crash in 1976."
+    },
+    "alain prost": {
+      "nationality": "French",
+      "world_titles": [
+        "1985",
+        "1986",
+        "1989",
+        "1993"
+      ],
+      "summary": "Alain Prost was a four-time World Champion known as 'The Professor' for his strategic driving style."
+    },
+    "juan manuel fangio": {
+      "nationality": "Argentine",
+      "world_titles": [
+        "1951",
+        "1954",
+        "1955",
+        "1956",
+        "1957"
+      ],
+      "summary": "Juan Manuel Fangio was a five-time World Champion and a dominant figure in early F1."
+    }
+  },
+  "teams": {
+    "ferrari": {
+      "full_name": "Scuderia Ferrari",
+      "summary": "Ferrari is the oldest and most famous team in Formula 1, known for its red cars and passionate fanbase.",
+      "nickname": "The Prancing Horse"
+    },
+    "mclaren": {
+      "full_name": "McLaren Formula 1 Team",
+      "summary": "McLaren is a historic British team with many drivers' and constructors' titles."
+    },
+    "mercedes": {
+      "full_name": "Mercedes-AMG Petronas Formula One Team",
+      "summary": "Mercedes dominated much of the turbo-hybrid era from 2014 onward."
+    },
+    "red bull": {
+      "full_name": "Oracle Red Bull Racing",
+      "summary": "Red Bull Racing became a modern powerhouse, winning titles with Sebastian Vettel and Max Verstappen."
+    },
+    "aston martin": {
+      "full_name": "Aston Martin Aramco Formula One Team",
+      "summary": "Aston Martin is a British-branded F1 team aiming to become a front-running constructor."
+    },
+    "alpine": {
+      "full_name": "BWT Alpine Formula One Team",
+      "summary": "Alpine is Renault's works Formula 1 team."
+    },
+    "haas": {
+      "full_name": "MoneyGram Haas F1 Team",
+      "summary": "Haas is an American-owned Formula 1 team."
+    },
+    "williams": {
+      "full_name": "Williams Racing",
+      "summary": "Williams is a historic British team with many championships, now rebuilding competitiveness."
+    },
+    "sauber": {
+      "full_name": "Stake F1 Team Kick Sauber / Sauber",
+      "summary": "Sauber is a long-running Swiss-based team, associated with Audi's future F1 project."
+    },
+    "racing bulls": {
+      "full_name": "Visa Cash App Racing Bulls / Racing Bulls",
+      "summary": "Racing Bulls is Red Bull's sister team, historically known under names including Toro Rosso and AlphaTauri."
+    }
+  },
+  "famous_races_and_events": {
+    "monaco grand prix": "One of the most prestigious races, held on narrow streets where qualifying and track position are extremely important.",
+    "british grand prix": "A historic race often held at Silverstone, one of F1's classic circuits.",
+    "italian grand prix": "Usually held at Monza, known as the Temple of Speed.",
+    "spa francorchamps": "A classic circuit in Belgium famous for Eau Rouge/Raidillon and unpredictable weather.",
+    "singapore grand prix": "A demanding night street race with heat, humidity, and walls close to the cars.",
+    "abu dhabi grand prix": "Often the season finale, held at Yas Marina Circuit.",
+    "las vegas grand prix": "A modern street race featuring long straights and night racing."
+  },
+  "circuits": {
+    "monza": "High-speed Italian circuit with long straights and heavy braking zones.",
+    "monaco": "Tight street circuit where overtaking is very difficult.",
+    "silverstone": "Fast British circuit with iconic corners like Maggotts, Becketts, and Copse.",
+    "spa": "Long Belgian circuit with elevation change and variable weather.",
+    "suzuka": "Technical Japanese circuit with figure-eight layout and famous esses.",
+    "interlagos": "Brazilian circuit known for elevation change and dramatic races.",
+    "bahrain": "Desert circuit often used early in the season, with heavy braking and tyre degradation.",
+    "jeddah": "Fast street circuit in Saudi Arabia.",
+    "austin cota": "Circuit of the Americas, a modern track in Texas with elevation change and varied corners.",
+    "yas marina": "Abu Dhabi circuit often used as a season finale."
+  },
+  "technical_concepts": {
+    "downforce": "Aerodynamic force pushing the car into the track, increasing grip.",
+    "drag": "Air resistance that slows the car down.",
+    "ground_effect": "Downforce generated by airflow under the car.",
+    "porpoising": "A bouncing effect caused by unstable ground-effect aerodynamics.",
+    "ers": "Energy Recovery System, which recovers energy and deploys it for extra power.",
+    "mguk": "Motor Generator Unit-Kinetic, recovers energy from braking.",
+    "mguh": "Motor Generator Unit-Heat, recovers energy from exhaust heat; used in older hybrid power unit regulations.",
+    "brake_by_wire": "Electronic rear braking system that balances mechanical and energy recovery braking.",
+    "drag_reduction_system": "DRS opens a flap in the rear wing to reduce drag and increase straight-line speed."
+  },
+  "penalties": {
+    "five_second_penalty": "A common penalty added to race time or served at a pit stop.",
+    "ten_second_penalty": "A larger time penalty for more serious incidents.",
+    "drive_through": "Driver must pass through pit lane without stopping.",
+    "stop_go": "Driver must stop in pit lane for a set time before continuing.",
+    "grid_penalty": "Driver starts lower on the grid, often due to component changes or driving offences.",
+    "disqualification": "Driver is removed from the classification, usually for serious rule breaches."
+  },
+  "f1_history": {
+    "first_world_championship_season": "1950",
+    "first_f1_world_champion": "Giuseppe Farina",
+    "most_iconic_teams": [
+      "Ferrari",
+      "McLaren",
+      "Williams",
+      "Mercedes",
+      "Red Bull",
+      "Lotus"
+    ],
+    "notable_eras": {
+      "1950s": "Early championship years dominated by drivers like Fangio.",
+      "1960s": "Rise of British teams and engineering innovation.",
+      "1970s": "Safety concerns, powerful personalities, and technical experimentation.",
+      "1980s": "Turbo era, Senna-Prost rivalry, and increasing professionalism.",
+      "1990s": "Schumacher's rise and major safety improvements after 1994.",
+      "2000s": "Ferrari-Schumacher dominance, then Renault, McLaren, and Brawn success.",
+      "2010s": "Red Bull-Vettel dominance followed by Mercedes hybrid-era dominance.",
+      "2020s": "Verstappen and Red Bull dominance followed by renewed competition from McLaren, Ferrari, and Mercedes."
+    }
+  },
+  "beginner_explanations": {
+    "why teams pit": "Teams pit mainly to change tyres. Fresh tyres can be much faster, but a pit stop costs time, so strategy is about choosing the best moment.",
+    "why qualifying matters": "Starting higher makes the race easier because overtaking can be difficult, especially on narrow tracks.",
+    "why f1 cars are so fast": "F1 cars are fast because they are light, powerful, aerodynamic, and generate huge downforce.",
+    "why teammates race each other": "Both drivers score for the same team, but they also compete individually in the Drivers' Championship.",
+    "why strategy matters": "Even the fastest car can lose if tyre choices, pit timing, or safety car decisions are wrong."
+  },
+  "chatbot_behavior_rules": {
+    "style": "Answer clearly, simply, and beginner-friendly.",
+    "focus": "Stay focused on Formula 1 unless the user asks for a comparison.",
+    "uncertainty": "If the knowledge base does not contain the answer, say that the knowledge base may need updating.",
+    "length": "Keep normal answers to 2-5 sentences unless the user asks for detail.",
+    "examples": "Use simple examples when explaining rules, strategy, or technical topics."
+  }
 
-    "verstappen":{
-        "aliases": ["max", "verstappen", "max verstappen", "mad max"],
-        "answer": "Max Verstappen is a Formula 1 driver known for driving for Red Bull Oracle Racing team."},
-
-    "ferrari":{ 
-        "aliases": ["ferrari", "scuderia", "scuderia ferrari", "rarri"],
-        "answer": "Ferrari is one of the most successful teams in Formula 1 history."},
-
-    "mercedes":{
-        "aliases": ["mercedes", "merc", "mercedes amg", "mercedes petronas amg"],
-        "answer": "Mercedes is one of the most dorminant teams in the modern era of Formula 1"},
-    
-    "drs":{
-        "aliases": ["drs", "drag reduction system"],
-        "answer": "DRS stands for Drag Reduction System. It's a system that helps cars reduce aerodynamic drag and increase overtaking chances by increasing straightline speed"}
 }
