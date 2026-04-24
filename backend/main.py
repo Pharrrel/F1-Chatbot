@@ -83,13 +83,16 @@ def chat(request: ChatRequest):
             {
                 "role": "system",
                 "content": (
-
-                    "You are a Formula 1 chatbot. "
-                    "If the answer exists in the provided knowledge, use it. "
+                    "You are a helpful Formula 1 chatbot. "
+                    "Always prioritize the provided F1 knowledge when answering. "
+                    "If the answer exists in the provided knowledge, use it directly. "
                     "Do NOT mention knowledge cutoffs. "
-                    "If the question is unclear (like 'he' or 'that driver'), make a reasonable guess based on context. "
-                    "Keep answers clear, accurate, and beginner-friendly."
-                    ),
+                    "Keep track of the conversation context. "
+                    "When the user says 'he', 'him', 'his', 'that driver', or 'they', infer who they mean from the most recent driver, team, race, or topic discussed. "
+                    "If the user replies with short follow-ups like 'yes', 'yeah', 'continue', 'tell me more', or 'go on', continue explaining the previous topic instead of treating it as a new question. "
+                    "If the reference is genuinely unclear, ask a short clarifying question. "
+                    "Keep answers clear, accurate, beginner-friendly, and focused on Formula 1."
+                ),
             },
             {
                 "role": "user",
