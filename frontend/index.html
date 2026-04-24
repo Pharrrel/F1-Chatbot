@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>F1 Chatbot</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background:
+        linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)),
+        radial-gradient(circle at top left, #e10600, transparent 35%),
+        #080808;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 900px;
+      background: rgba(18, 18, 18, 0.92);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+    }
+
+    .header {
+      padding: 24px;
+      background: linear-gradient(135deg, #e10600, #111);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 34px;
+      letter-spacing: 1px;
+    }
+
+    .header p {
+      margin: 8px 0 0;
+      color: #f1f1f1;
+      font-size: 15px;
+    }
+
+    #chatBox {
+      padding: 22px;
+      min-height: 430px;
+      max-height: 520px;
+      overflow-y: auto;
+      background:
+        linear-gradient(45deg, rgba(255,255,255,0.03) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(255,255,255,0.03) 25%, transparent 25%),
+        #101010;
+      background-size: 28px 28px;
+    }
+
+    .message-row {
+      display: flex;
+      margin-bottom: 16px;
+    }
+
+    .user-row {
+      justify-content: flex-end;
+    }
+
+    .bot-row {
+      justify-content: flex-start;
+    }
+
+    .message {
+      max-width: 76%;
+      padding: 14px 16px;
+      border-radius: 18px;
+      line-height: 1.5;
+      font-size: 15px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    }
+
+    .message strong {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 6px;
+      opacity: 0.85;
+    }
+
+    .user {
+      background: #e10600;
+      color: white;
+      border-bottom-right-radius: 4px;
+    }
+
+    .bot {
+      background: #1f1f1f;
+      color: #f5f5f5;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-bottom-left-radius: 4px;
+    }
+
+    #inputArea {
+      display: flex;
+      gap: 10px;
+      padding: 18px;
+      background: #0b0b0b;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    #messageInput {
+      flex: 1;
+      padding: 14px;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 14px;
+      font-size: 15px;
+      background: #171717;
+      color: white;
+      outline: none;
+    }
+
+    #messageInput:focus {
+      border-color: #e10600;
+    }
+
+    button {
+      padding: 14px 18px;
+      border: none;
+      border-radius: 14px;
+      background: #e10600;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #ff1e17;
+    }
+
+    .clear-btn {
+      background: #2a2a2a;
+    }
+
+    .clear-btn:hover {
+      background: #3a3a3a;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <div class="header">
+      <h1>🏎️ F1 Chatbot</h1>
+      <p>Come let's talk everything F1.</p>
+    </div>
+
+    <div id="chatBox">
+      <div class="message-row bot-row">
+        <div class="message bot">
+          <strong>F1 Bot</strong>
+          <div>Welcome to the paddock. Ask me anything about Formula 1.</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="inputArea">
+      <input type="text" id="messageInput" placeholder="Ask an F1 question..." />
+      <button onclick="sendMessage()">Send</button>
+      <button class="clear-btn" onclick="clearChat()">Clear</button>
+    </div>
+  </div>
+
+  <script>
+    async function sendMessage() {
+      const input = document.getElementById("messageInput");
+      const chatBox = document.getElementById("chatBox");
+
+      const userMessage = input.value.trim();
+
+      if (!userMessage) return;
+
+      chatBox.innerHTML += `
+        <div class="message-row user-row">
+          <div class="message user">
+            <strong>You</strong>
+            <div>${userMessage}</div>
+          </div>
+        </div>
+      `;
+
+      input.value = "";
+      input.focus();
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      const thinkingRow = document.createElement("div");
+      thinkingRow.className = "message-row bot-row";
+      thinkingRow.innerHTML = `
+        <div class="message bot">
+          <strong>F1 Bot</strong>
+          <div>Checking race data...</div>
+        </div>
+      `;
+
+      chatBox.appendChild(thinkingRow);
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      try {
+        const response = await fetch("http://127.0.0.1:8000/chat", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            message: userMessage
+          })
+        });
+
+        const data = await response.json();
+
+        thinkingRow.innerHTML = `
+          <div class="message bot">
+            <strong>F1 Bot</strong>
+            <div></div>
+          </div>
+        `;
+
+        thinkingRow.querySelector(".message div").append(
+          document.createTextNode(data.reply)
+        );
+
+        chatBox.scrollTop = chatBox.scrollHeight;
+      } catch (error) {
+        console.error("Fetch error:", error);
+
+        thinkingRow.innerHTML = `
+          <div class="message bot">
+            <strong>F1 Bot</strong>
+            <div>Could not reach the pit wall. Check if your backend is running.</div>
+          </div>
+        `;
+      }
+    }
+
+    function clearChat() {
+      document.getElementById("chatBox").innerHTML = `
+        <div class="message-row bot-row">
+          <div class="message bot">
+            <strong>F1 Bot</strong>
+            <div>Chat cleared. Ready for another lap.</div>
+          </div>
+        </div>
+      `;
+    }
+
+    document.getElementById("messageInput").addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        sendMessage();
+      }
+    });
+  </script>
+</body>
+</html>

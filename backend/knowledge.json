@@ -1,0 +1,21 @@
+{
+    "hamilton": {
+        "aliases": ["hamilton", "lewis", "lewis hamilton", "goat"],
+        "answer": "Lewis Hamilton is one of the most successful drivers in Formula 1 history."},
+
+    "verstappen":{
+        "aliases": ["max", "verstappen", "max verstappen", "mad max"],
+        "answer": "Max Verstappen is a Formula 1 driver known for driving for Red Bull Oracle Racing team."},
+
+    "ferrari":{ 
+        "aliases": ["ferrari", "scuderia", "scuderia ferrari", "rarri"],
+        "answer": "Ferrari is one of the most successful teams in Formula 1 history."},
+
+    "mercedes":{
+        "aliases": ["mercedes", "merc", "mercedes amg", "mercedes petronas amg"],
+        "answer": "Mercedes is one of the most dorminant teams in the modern era of Formula 1"},
+    
+    "drs":{
+        "aliases": ["drs", "drag reduction system"],
+        "answer": "DRS stands for Drag Reduction System. It's a system that helps cars reduce aerodynamic drag and increase overtaking chances by increasing straightline speed"}
+}
