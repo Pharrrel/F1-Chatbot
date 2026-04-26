@@ -29,6 +29,8 @@ app.add_middleware(
 
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
+chat_history = []
+
 #creation of a data model/creating a blueprint for the data
 #a valid chat request must have a field called message and value must be text
 class ChatRequest(BaseModel):
@@ -81,6 +83,14 @@ def chat(request: ChatRequest):
 
     relevant_knowledge = search_knowledge(user_message)
 
+    chat_history.append({
+        "role": "user",
+        "content": user_message
+    })
+
+    recent_history = chat_history[-10:]
+
+
     response = client.chat.completions.create(
         model="llama-3.3-70b-versatile",
         messages=[
@@ -90,6 +100,7 @@ def chat(request: ChatRequest):
                     "You are a helpful Formula 1 chatbot. "
                     "If the answer exists in the provided knowledge, use it directly. "
                     "Do NOT mention knowledge cutoffs. "
+                    "Remember the conversation context. "
                     "Keep track of the conversation context. "
                     "When the user says 'he', 'him', 'his', 'that driver', or 'they', infer who they mean from the most recent driver, team, race, or topic discussed. "
                     "If the user replies with short follow-ups like 'yes', 'yeah', 'continue', 'tell me more', or 'go on', continue explaining the previous topic instead of treating it as a new question. "
@@ -101,14 +112,16 @@ def chat(request: ChatRequest):
                 "role": "user",
                 "content": f"Relevant F1 knowledge: {relevant_knowledge}",
             },
-            {
-                "role": "user",
-                "content": user_message
-            },
+            *recent_history,
         ],
     )
 
     reply = response.choices[0].message.content
+
+    chat_history.append({
+        "role": "assistant",
+        "content": reply
+    })
 
     return {
         "reply": reply
